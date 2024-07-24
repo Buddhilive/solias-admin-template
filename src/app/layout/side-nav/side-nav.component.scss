@@ -1,10 +1,16 @@
-.sidenav {
+$sidenav-class: 'sidenav';
+
+.#{$sidenav-class} {
   width: 3.75rem;
   height: 100vh;
   background-color: #f0f4f9;
   display: flex;
   flex-direction: column;
   padding: 12px 8px;
+  transition: all .5s ease;
+  &.#{$sidenav-class}--expand {
+    width: 16rem;
+  }
   &__toggle {
     border: none;
     background: transparent;

@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterOutlet,
+    SideNavComponent
+  ],
   template: `
-    <p>
-      layout works!
-    </p>
+    <div class="layout">
+      <nav class="layout__nav">
+        <app-side-nav></app-side-nav>
+      </nav>
+      <main class="layout__content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   `,
   styleUrl: './layout.component.scss'
 })

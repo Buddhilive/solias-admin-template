@@ -1,6 +1,12 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { LayoutSideNaveMenuItem } from '../constants/menu-item.interface';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,33 +14,48 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <div class="sidenav" [ngClass]="{ 'sidenav--expand': !isCollapsed }">
-      <button class="sidenav__toggle" (click)="isCollapsed = !isCollapsed">
+    <div class="solias-sidebar" [class.solias-sidebar--collapsed]="isCollapsed">
+      <button class="solias-sidebar__btn" (click)="toggleSidebar()">
         <span class="material-icons">menu</span>
       </button>
-      <div class="sidenav__content">
-        <ul class="sidenav__list">
-          @for (item of menuItems; track $index) {
-          <li class="sidenav__item">
-            <a [routerLink]="item.link" class="sidenav__link">
-              <span class="material-icons">{{ item.icon }}</span>
-              <span class="sidenav__link-text">{{ item.title }}</span>
-            </a>
-          </li>
-          }
-        </ul>
-      </div>
+      <ul class="solias-sidebar__list">
+        @for (item of menuItems; track $index) {
+        <li class="solias-sidebar__item">
+          <a class="solias-sidebar__link" [routerLink]="[item.link]">
+            <span class="material-icons">{{ item.icon }}</span>
+            @if (!isCollapsed) {
+            <span class="solias-sidebar__title" [@toggle]="!isCollapsed">{{
+              item.name
+            }}</span>
+            }
+          </a>
+        </li>
+        }
+      </ul>
     </div>
   `,
   styleUrl: './side-nav.component.scss',
+  animations: [
+    trigger('toggle', [
+      state('true', style({ opacity: 1 })),
+      state('void', style({ opacity: 0 })),
+      transition(':enter', animate('500ms ease-in-out')),
+      transition(':leave', animate('500ms ease-in-out')),
+    ]),
+  ],
 })
 export class SideNavComponent {
+  @Input() menuItems!: ISideMenuItem[];
+
   isCollapsed = true;
-  menuItems: LayoutSideNaveMenuItem[] = [
-    {
-      title: 'Dashboard',
-      link: '/dashboard',
-      icon: 'dashboard',
-    },
-  ];
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+}
+
+export interface ISideMenuItem {
+  name: string;
+  link: string;
+  icon: string;
 }

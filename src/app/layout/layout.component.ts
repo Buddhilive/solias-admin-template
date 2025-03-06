@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { TopBarComponent } from "./top-bar/top-bar.component";
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterOutlet, SideNavComponent],
+  imports: [RouterOutlet, SideNavComponent, TopBarComponent],
   template: `
-    <div class="layout">
-      <nav class="layout__nav">
+    <div class="solias">
+      <aside class="solias__aside">
         <app-side-nav [menuItems]="menuItems"></app-side-nav>
-      </nav>
-      <main class="layout__content">
-        <router-outlet></router-outlet>
-      </main>
+      </aside>
+      <div class="solias__body">
+        <nav class="solias__nav">
+          <app-top-bar></app-top-bar>
+        </nav>
+        <main class="solias__main">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
     </div>
   `,
   styleUrl: './layout.component.scss',

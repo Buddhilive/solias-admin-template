@@ -9,8 +9,8 @@ import { RouterLink } from '@angular/router';
     <div class="solias-navbar">
       <a class="solias-navbar__logo" [routerLink]="['/']">
         <img
-          src="assets/logo/berkelium_logo_small.png"
-          alt="Berkeliumlabs Logo"
+          src="https://solias.dev/icon.png"
+          alt="Example Logo"
           srcset=""
         />
         <span>Solias Admin</span>
@@ -42,9 +42,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './top-bar.component.scss',
 })
 export class TopBarComponent {
-  userInfo: any = {};
+  userInfo: any;
   logout() {
-    this.userInfo = {};
+    this.userInfo = undefined;
   }
 
   login() {

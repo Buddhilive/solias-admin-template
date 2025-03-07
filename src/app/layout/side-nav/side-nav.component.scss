@@ -7,8 +7,9 @@
   width: 240px;
   padding: 1rem 0.5rem;
   margin: 0;
-  background-color: var(--color-surface);
-  transition: 0.5s ease-in-out all;
+  border-right: 0.0625rem solid var(--solias-divider);
+  background-color: var(--solias-background);
+  transition: 0.5s ease-in-out width;
   &--collapsed {
     width: 3rem;
   }
@@ -24,22 +25,25 @@
   &__item {
     padding: 8px;
     transition: 0.1s ease-in-out all;
-    border-radius: 24px;
+    border-radius: 0.5rem;
     &:hover {
-      background-color: var(--color-primary-hover);
+      background-color: var(--solias-nav-hover);
     }
   }
   &__title {
     font-size: 0.75rem;
+    background-color: transparent;
   }
   &__link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    color: #1f1f1f;
+    color: var(--solias-nav-txt);
+    background-color: transparent;
     .material-icons {
       font-size: 1rem;
+      background-color: transparent;
     }
   }
   &__btn {
@@ -55,10 +59,12 @@
     background-color: transparent;
     transition: 0.1s ease-in all;
     &:hover {
-      background-color: var(--color-primary-hover);
+      background-color: var(--solias-nav-hover);
     }
     .material-icons {
+      color: var(--solias-nav-txt);
       font-size: 1.5rem;
+      background-color: transparent;
     }
   }
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { TopBarComponent } from "./top-bar/top-bar.component";
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { LayoutService } from './layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -23,8 +24,10 @@ import { TopBarComponent } from "./top-bar/top-bar.component";
     </div>
   `,
   styleUrl: './layout.component.scss',
+  providers: [LayoutService],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
+  private _layoutService = inject(LayoutService);
   menuItems = [
     {
       name: 'Dashboard',
@@ -37,4 +40,8 @@ export class LayoutComponent {
       icon: 'explore',
     },
   ];
+
+  ngOnInit(): void {
+    this._layoutService.setSystemTheme();
+  }
 }

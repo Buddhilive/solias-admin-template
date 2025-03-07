@@ -7,28 +7,28 @@ import { LayoutService } from '../layout.service';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <div class="solias-navbar">
-      <a class="solias-navbar__logo" [routerLink]="['/']">
+    <div class="solias-navbar flex justify-around items-center pt-2 pb-2 pl-4 pr-4">
+      <a class="solias-navbar__logo flex justify-center items-center gap-1 no-underline cursor-pointer" [routerLink]="['/']">
         <img src="https://solias.dev/icon.png" alt="Example Logo" srcset="" />
-        <span>Solias Admin</span>
+        <span class="text-gray-900 dark:text-white text-base font-semibold">Solias Admin</span>
       </a>
-      <span class="solias-navbar__spacer"></span>
-      <div class="solias-navbar__actions">
+      <span class="flex-auto"></span>
+      <div class="flex justify-around items-center gap-2 ml-2">
         <button class="solias-navbar__btn" (click)="toggleTheme()" title="Toggle Theme">
           <span class="material-icons"> {{ themeMode === 'light' ? 'dark_mode' : 'light_mode' }} </span>
         </button>
       </div>
       @if (userInfo) {
-      <div class="solias-navbar__user">
+      <div class="flex justify-center items-center gap-2 mr-4 ml-4">
         <img
           [src]="userInfo.photoURL"
           alt="Profile Picture"
-          class="profile-picture"
+          class="h-6 w-6 rounded-full object-cover"
         />
-        <span class="user-name">{{ userInfo.displayName }}</span>
+        <span class="text-gray-900 dark:text-white text-xs">{{ userInfo.displayName }}</span>
       </div>
       }
-      <div class="solias-navbar__actions">
+      <div class="flex justify-around items-center gap-2 ml-2">
         @if (userInfo) {
         <button class="solias-navbar__btn" (click)="logout()" title="Logout">
           <span class="material-icons"> logout </span>

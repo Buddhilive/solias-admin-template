@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -8,11 +9,7 @@ import { RouterLink } from '@angular/router';
   template: `
     <div class="solias-navbar">
       <a class="solias-navbar__logo" [routerLink]="['/']">
-        <img
-          src="https://solias.dev/icon.png"
-          alt="Example Logo"
-          srcset=""
-        />
+        <img src="https://solias.dev/icon.png" alt="Example Logo" srcset="" />
         <span>Solias Admin</span>
       </a>
       <span class="solias-navbar__spacer"></span>
@@ -27,6 +24,9 @@ import { RouterLink } from '@angular/router';
       </div>
       }
       <div class="solias-navbar__actions">
+        <button class="solias-navbar__btn" (click)="toggleTheme()" title="Toggle Theme">
+          <span class="material-icons"> {{ themeMode === 'light' ? 'dark_mode' : 'light_mode' }} </span>
+        </button>
         @if (userInfo) {
         <button class="solias-navbar__btn" (click)="logout()" title="Logout">
           <span class="material-icons"> logout </span>
@@ -41,8 +41,19 @@ import { RouterLink } from '@angular/router';
   `,
   styleUrl: './top-bar.component.scss',
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
+  private _layoutService = inject(LayoutService);
   userInfo: any;
+  themeMode: 'light' | 'dark' = 'light';
+
+  ngOnInit(): void {
+    this.themeMode = this._layoutService.themeMode();
+  }
+
+  toggleTheme() {
+    this._layoutService.toggleTheme();
+    this.themeMode = this._layoutService.themeMode();
+  }
   logout() {
     this.userInfo = undefined;
   }

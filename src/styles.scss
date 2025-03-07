@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "../node_modules/@solias/solias-components/styles/styles.scss";
 @import "../node_modules/@solias/solias-components/styles/themes/default_theme.scss";
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --solias-background: #f8f9fa;
@@ -21,7 +23,7 @@
   --solias-card-border: #1d2630;
 }
 
-* {
+html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

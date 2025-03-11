@@ -5,7 +5,6 @@ import { LayoutComponent } from "./layout/layout.component";
   selector: 'app-root',
   standalone: true,
   imports: [LayoutComponent],
-  template: `<app-layout></app-layout>`,
-  styleUrl: './app.component.scss'
+  template: `<app-layout></app-layout>`
 })
 export class AppComponent {}

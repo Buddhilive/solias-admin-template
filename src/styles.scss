@@ -1,32 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import "../node_modules/@solias/solias-components/styles/styles.scss";
-@import "../node_modules/@solias/solias-components/styles/themes/default_theme.scss";
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-
-:root {
-  --solias-background: #f8f9fa;
-  --solias-nav-txt: #5b6b79;
-  --solias-divider: #bec8d0;
-  --solias-nav-hover: #bec8d0;
-  --solias-card-background: #ffffff;
-  --solias-card-border: #ffffff;
-}
-
-.dark {
-  --solias-background: #131920;
-  --solias-nav-txt: #bec8d0;
-  --solias-divider: #5b6b79;
-  --solias-nav-hover: #5b6b79;
-  --solias-card-background: #1d2630;
-  --solias-card-border: #1d2630;
-}
 
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans", sans-serif;
-  background-color: var(--solias-background);
+  @apply bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400;
 }
